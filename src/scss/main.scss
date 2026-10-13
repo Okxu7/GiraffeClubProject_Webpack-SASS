@@ -1,0 +1,1145 @@
+//стара версія
+// @import 'variables';
+// @import 'mixins';
+// ---------------------------------------------------
+
+@use "sass:color";
+@use 'variables' as *;
+@use 'mixins' as *;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: $font-main;
+  color: $text-dark;
+  background-color: #f4f4f4; // Фон за межами контейнера
+}
+
+.wrapper {
+  max-width: 1440px;
+  margin: 0 auto;
+  background-color: $bg-orange;
+  min-height: 900vh;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  // Створення білого трикутника справа за допомогою clip-path
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    background-color: #ffffff;
+    clip-path: polygon(100% 0, 100% 100%, 0 50%); // Формує трикутник
+    z-index: 1;
+  }
+}
+
+// Вкладеність для Header
+.header {
+  position: relative;
+  z-index: 2; // Щоб хедер був поверх трикутника
+  padding: 20px 40px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+
+  .nav {
+    @include flex-between;
+
+    &-links {
+      display: flex;
+      list-style: none;
+      gap: 25px;
+
+      li a {
+        text-decoration: none;
+        color: $text-dark;
+        font-size: 14px;
+        transition: opacity 0.3s ease;
+
+        &:hover {
+          opacity: 0.7;
+        }
+      }
+    }
+
+    &-icons {
+      display: flex;
+      gap: 15px;
+      
+      a {
+        text-decoration: none;
+        font-size: 18px;
+        color: $text-dark;
+        transition: transform 0.2s;
+
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
+    }
+  }
+}
+
+// Вкладеність для секції Hero
+.hero {
+  @include flex-between;
+  flex: 1;
+  position: relative;
+  z-index: 2; // Щоб контент був поверх трикутника
+  padding: 0 80px;
+
+  &-content {
+    max-width: 500px;
+
+    h1 {
+      font-size: 64px;
+      margin-bottom: 20px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    p {
+      font-size: 22px;
+      line-height: 1.4;
+      margin-bottom: 40px;
+    }
+
+    .btn {
+      padding: 15px 30px;
+      font-size: 16px;
+      font-family: $font-sans;
+      background-color: $btn-bg;
+      color: $text-dark;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: #f0f0f0;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      }
+    }
+  }
+
+  &-visual {
+    position: relative;
+    right: 50px; // Зсуваємо картинку ближче до центру
+    
+    .giraffe-img {
+      max-width: 100%;
+      height: auto;
+      max-height: 70vh;
+      object-fit: contain;
+      /* Додайте фільтр Drop-shadow, якщо у жирафи немає власної тіні у файлі png */
+      filter: drop-shadow(-10px 10px 15px rgba(0,0,0,0.2));
+    }
+  }
+}
+
+.header {
+    height: 32px;
+    background-color: #e9843f;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 35px;
+}
+
+
+// -------------------------------------------------------
+
+// =========================
+// RESET
+// =========================
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: $black;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+// =========================
+// HEADER
+// =========================
+
+.header {
+    height: 62px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 35px;
+
+    background-color: $orange;
+ 
+    position: relative;
+    z-index: 10;
+}
+
+
+// =========================
+// NAVIGATION
+// =========================
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+
+    a {
+        font-family: Georgia, serif;
+        font-size: 19px;
+
+        &:hover {
+            opacity: 0.6;
+        }
+    }
+}
+
+
+// =========================
+// CONTACTS
+// =========================
+
+.contacts {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    font-size: 23px;
+}
+
+
+// =========================
+// HERO
+// =========================
+
+.hero {
+    position: relative;
+
+    min-height: 860px;
+
+    overflow: hidden;
+
+    background-color: $orange;
+
+
+    // White geometric shape
+    &::after {
+        content: "";
+
+        position: absolute;
+
+        top: 0;
+        right: 0;
+
+        width: 53%;
+        height: 100%;
+
+        background-color: $white;
+
+        clip-path: polygon(
+            100% 0,
+            100% 100%,
+            0 50%
+        );
+
+        z-index: 1;
+    }
+}
+
+
+// =========================
+// HERO CONTENT
+// =========================
+
+.hero__content {
+    position: relative;
+
+    z-index: 2;
+
+    width: 400px;
+
+    padding-top: 67px;
+    margin-left: 70px;
+
+
+    h1 {
+        font-family: Georgia, "Times New Roman", serif;
+
+        font-size: 39px;
+        font-weight: 700;
+        line-height: 1.1;
+
+        margin-bottom: 12px;
+    }
+
+
+    p {
+        max-width: 330px;
+
+        font-family: Georgia, "Times New Roman", serif;
+
+        font-size: 17px;
+        line-height: 1.15;
+
+        margin-bottom: 24px;
+    }
+}
+
+
+// =========================
+// BUTTON
+// =========================
+
+.hero__button {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-width: 135px;
+
+    padding: 9px 14px;
+
+    background-color: $white;
+
+    color: #555;
+
+    border-radius: 4px;
+
+    font-size: 19px;
+
+    transition: 0.2s;
+
+
+    &:hover {
+        transform: translateY(-2px);
+
+        box-shadow:
+            0 4px 10px rgba(0, 0, 0, 0.12);
+    }
+}
+
+
+// =========================
+// GIRAFFE
+// =========================
+
+.hero__giraffe {
+    position: absolute;
+
+    right: 35px;
+    bottom: -5px;
+
+    width: 520px;
+
+    z-index: 3;
+
+
+    img {
+        display: block;
+ filter: drop-shadow(-10px 10px 15px rgba(0,0,0,0.2));
+        width: 110%;
+        height: auto;
+        padding-bottom:94px;
+        padding-right: 124px;
+    }
+}
+
+
+
+// --------------------------------------------
+
+
+.about-us {
+  max-width: 1200px;
+  margin: 60px auto;
+  padding: 0 20px;
+  text-align: center;
+  position: relative;
+  z-index: 2; // Если нужно разместить поверх декоративного фона
+
+  .about-header {
+    margin-bottom: 50px;
+
+    .subtitle {
+      color: $bg-orange; // Используем вашу переменную из предыдущих шагов
+      font-weight: bold;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 15px;
+      text-align: left;
+    }
+
+    h2 {
+      font-size: 32px;
+      font-weight: normal;
+    }
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); // 3 колонки
+    gap: 30px; // Расстояние между карточками
+
+    .feature-card {
+      background-color: #fff;
+      border: 1px solid #333; // Тонкая рамка карточки
+      border-radius: 12px; // Скругление углов
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: box-shadow 0.3s ease;
+
+      &:hover {
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+      }
+
+      .icon {
+        width: 80px;
+        height: 80px;
+        margin-bottom: 20px;
+      }
+
+      p {
+        font-size: 16px;
+        line-height: 1.4;
+      }
+    }
+  }
+}
+
+
+// -------------------------------------
+
+.directions {
+  background-color: $bg-orange; // Используем переменную из предыдущих шагов
+  padding: 60px 40px;
+  position: relative;
+  text-align: center;
+  color: $text-dark;
+
+  .directions-header {
+    position: relative;
+    margin-bottom: 50px;
+
+    .label {
+      position: absolute;
+      left: 0;
+      top: -20px;
+      color: #fff;
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    h2 {
+      font-size: 32px;
+      font-weight: normal;
+    }
+  }
+
+  .directions-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    margin-bottom: 40px;
+
+    .side-img {
+      width: 200px;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .directions-list {
+      list-style: none;
+      text-align: left;
+      flex: 1;
+      max-width: 600px;
+
+      li {
+        padding: 15px 0;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.6);
+        font-size: 18px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+
+        &:first-child {
+          border-top: 1px solid rgba(0, 0, 0, 0.6);
+        }
+
+        .num {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          min-width: 35px;
+          height: 35px;
+          border: 1px solid rgba(0, 0, 0, 0.6);
+          border-radius: 50%;
+          font-size: 16px;
+        }
+      }
+    }
+  }
+
+  .btn-outline {
+    padding: 12px 30px;
+    background: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    border-radius: 6px;
+    font-size: 16px;
+    color: $text-dark;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+      color: #fff;
+    }
+  }
+}
+
+
+// ---------------------------------------------------
+
+
+.education {
+  max-width: 1200px;
+  margin: 80px auto;
+  padding: 0 20px;
+  color: $text-dark; // Переменная из ваших предыдущих настроек
+
+  .section-label {
+    font-size: 16px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 50px;
+  }
+
+  // Общий класс для цифр в кружках, который используется в обеих секциях
+  .num {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 38px;
+    height: 38px;
+    border: 1px solid #111;
+    border-radius: 50%;
+    margin-right: 15px;
+    font-size: 18px;
+    font-weight: normal;
+  }
+
+  .learning-types {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 80px;
+
+    .learning-text {
+      flex: 1;
+
+      h2 {
+        font-size: 36px;
+        font-weight: normal;
+        margin-bottom: 50px;
+      }
+
+      .numbered-list {
+        list-style: none;
+
+        li {
+          font-size: 22px;
+          margin-bottom: 30px;
+          display: flex;
+          align-items: center;
+        }
+      }
+    }
+
+    .learning-image {
+      flex: 1;
+      text-align: right;
+
+      img {
+        max-width: 100%;
+        border-radius: 12px; // Скругление углов как на макете
+        object-fit: cover;
+      }
+    }
+  }
+
+  .course-formats {
+    text-align: center;
+
+    h2 {
+      font-size: 32px;
+      font-weight: normal;
+      margin-bottom: 60px;
+    }
+
+    .formats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      text-align: left;
+
+      .format-card {
+        h3 {
+          font-size: 22px;
+          font-weight: normal;
+          display: flex;
+          align-items: center;
+          margin-bottom: 20px;
+        }
+
+        p {
+          font-size: 16px;
+          line-height: 1.5;
+          padding-left: 55px; // Выравнивание текста ровно под заголовком (отступ равен ширине кружка + margin)
+        }
+      }
+    }
+  }
+}
+// -----------------------------
+.travels {
+  max-width: 1200px;
+  margin: 80px auto;
+  padding: 0 20px;
+  color: $text-dark; // Переменная из ваших предыдущих настроек
+
+  .travels-header {
+    position: relative;
+    text-align: center;
+    margin-bottom: 40px;
+
+    .section-label {
+      position: absolute;
+      left: 0;
+      top: 10px;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    h2 {
+      font-size: 36px;
+      font-weight: normal;
+    }
+  }
+
+  .travels-text {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 50px;
+    max-width: 900px;
+
+    p {
+      margin-bottom: 20px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+ 
+ .gallery-grid {
+  display: grid;
+  // Створюємо базову сітку з 4 однакових колонок
+  grid-template-columns: repeat(4, 1fr);
+  // Базова висота рядка для зручності розрахунків
+  grid-auto-rows: 150px; 
+  gap: 20px;
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+  }
+
+  // Розставляємо кожне фото по сітці
+  .grid-park {
+    grid-column: 1 / 2;
+    grid-row:1/4; // Займає 2 ряди у висоту
+  }
+
+  .grid-bus {
+    grid-column: 1 / 2;
+    grid-row: 4/ 6; // Займає 3 ряди у висоту (вище)
+  }
+
+  .grid-sea {
+    grid-column: 2 / 4; // Займає 2 колонки в ширину
+    grid-row: 1 / 3;
+  }
+
+  .grid-mountains {
+    grid-column: 4 / 5;
+    grid-row: 1 / 3;
+  }
+
+  .grid-tree {
+    grid-column: 2 / 3;
+    grid-row: 3 / 6; // Високе фото дерева
+  }
+
+  .grid-london {
+    grid-column: 3 / 5; // Широке фото Лондона
+    grid-row: 3 / 5;
+  }
+
+  .grid-snow {
+    grid-column: 3 / 4;
+    grid-row: 5 / 6; // Маленьке фото
+  }
+
+  .grid-city {
+    grid-column: 4 / 5;
+    grid-row: 5 / 6; // Маленьке фото
+  }
+}
+
+  
+//  ---------------------------------------------------
+
+ 
+
+.team {
+  background-color: $bg-orange; // Використовуйте змінну помаранчевого кольору
+  padding: 60px 40px;
+  color: $text-dark;
+  text-align: center;
+
+  .team-header {
+    position: relative;
+    margin-bottom: 60px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+
+    .label {
+      position: absolute;
+      left: 0;
+      top: 10px;
+      color: #fff;
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    h2 {
+      font-size: 32px;
+      font-weight: normal;
+    }
+  }
+
+  .team-slider {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    .slider-arrow {
+      background: transparent;
+      border: 1px solid #fff;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      flex-shrink: 0;
+
+      svg {
+        width: 30px;
+        height: 30px;
+      }
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+    }
+ 
+    
+
+ }
+
+    .cards-container {
+      display: flex;
+      align-items: center; 
+      gap: 40px;
+      flex: 1;
+      
+      /* Змінюємо center на flex-start, щоб прокрутка працювала коректно */
+      justify-content: flex-start; 
+      
+      /* Додаємо горизонтальну прокрутку */
+      overflow-x: auto; 
+      scroll-behavior: smooth; 
+      padding: 10px 0; // Невеликий відступ
+
+      /* Приховуємо стандартний повзунок прокрутки для естетики */
+      scrollbar-width: none; // Для Firefox
+      &::-webkit-scrollbar {
+        display: none; // Для Chrome/Safari
+      }
+
+ 
+
+
+      .team-card {
+        background-color: #fff;
+        border-radius: 12px;
+        overflow: hidden;
+        width: 300px;
+        display: flex;
+        flex-direction: column;
+        flex-shrink: 0;
+
+        /* Добавляем плавность для изменения размера и прозрачности */
+        transition: transform 0.4s ease, opacity 0.4s ease;
+        
+  
+        
+        /* 2. Базовий стан карток */
+        opacity: 0.6; 
+        transform: scale(0.9);
+        img {
+          width: 100%;
+          height: 320px;
+          object-fit: cover;
+        }
+
+        .card-info {
+          padding: 25px 20px;
+          text-align: center;
+          flex: 1;
+
+          h3 {
+            font-size: 20px;
+            font-weight: normal;
+            margin-bottom: 15px;
+          }
+
+          p {
+            font-size: 14px;
+            line-height: 1.5;
+          }
+        }
+
+        /* Класс, который JavaScript будет автоматически добавлять центральной карточке */
+      /* 3. Модифікатор для центральної картки (всередині .team-card) */
+        &.card-main {
+          transform: scale(1.1); // Збільшує картку
+          opacity: 1;            // Робить яскравою
+          z-index: 2;
+        }
+      }
+    }
+}
+.reviews {
+  max-width: 1200px;
+  margin: 80px auto;
+  padding: 0 20px;
+  color: $text-dark; // Використовуємо змінну темного тексту з ваших налаштувань
+
+  .reviews-header {
+    position: relative;
+    text-align: center;
+    margin-bottom: 60px;
+
+    .label {
+      position: absolute;
+      left: 0;
+      top: 10px;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    h2 {
+      font-size: 36px;
+      font-weight: normal;
+    }
+  }
+
+  .reviews-slider {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+
+    .slider-arrow {
+      background: transparent;
+      border: 1px solid #d47a43; // Колір рамки під колір фону картки
+      color: #d47a43;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      flex-shrink: 0;
+
+      svg {
+        width: 30px;
+        height: 30px;
+      }
+
+      &:hover {
+        background-color: #d47a43;
+        color: #fff;
+      }
+    }
+
+    .reviews-container {
+      flex: 1;
+      display: flex;
+      gap: 30px; // Додаємо відступ між картками
+      
+      /* Змінюємо вирівнювання, щоб картки починалися зліва */
+      justify-content: flex-start; 
+      
+      /* Вмикаємо горизонтальну прокрутку */
+      overflow-x: auto; 
+      scroll-behavior: smooth; 
+
+      /* Ховаємо смугу прокрутки */
+      scrollbar-width: none; 
+      &::-webkit-scrollbar {
+        display: none; 
+      }
+
+      .review-card {
+        background-color: #d47a43; 
+        border-radius: 12px;
+        padding: 40px;
+        color: $text-dark;
+        max-width: 850px;
+        width: 100%;
+        
+        /* ЗАБОРОНЯЄМО КАРТКАМ СТИСКАТИСЯ В КАРУСЕЛІ */
+        flex-shrink: 0; 
+
+        // ... інші ваші стилі для review-author, review-divider, review-text залишаються без змін ...
+      }
+
+.author-icon {
+
+
+  width: 3%;
+}
+
+    }
+  }
+}
+
+.footer {
+  // Используем оранжевый фон, как в предыдущих секциях
+  background-color: #d47a43; 
+  padding: 50px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #111111; // $text-dark
+
+  .footer-logo {
+    font-size: 36px;
+    font-weight: bold;
+    // Используем шрифт с засечками для логотипа, если он задан в переменных
+    font-family: 'Georgia', serif; 
+    flex: 0 0 25%;
+  }
+
+  .footer-contacts {
+    display: flex;
+    justify-content: space-between;
+    flex: 1;
+
+    .contact-block {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+
+      .contact-label {
+        font-size: 14px;
+        font-weight: normal;
+      }
+
+      .contact-value {
+        font-size: 16px;
+        color: #111111;
+        text-decoration: none;
+        transition: opacity 0.3s ease;
+
+        // Эффект наведения только для ссылок
+        &[href]:hover {
+          opacity: 0.7;
+        }
+      }
+
+      .social-icons {
+        display: flex;
+        gap: 15px;
+
+        a {
+          color: #111111;
+          transition: transform 0.3s ease;
+          display: inline-flex;
+
+          &:hover {
+            transform: scale(1.15);
+          }
+        }
+      }
+    }
+  }
+}
+
+
+// ==========================================
+// СТИЛІ МОДАЛЬНОГО ВІКНА
+// ==========================================
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); // Затемнення фону
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  
+  /* Початково вікно сховане */
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+
+  /* Клас для активації вікна через JS */
+  &.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .modal-content {
+    background-color: #fff;
+    padding: 60px;
+    border-radius: 30px; // Округлі кути як на макеті
+    position: relative;
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+
+    .modal-close {
+      position: absolute;
+      top: 25px;
+      right: 25px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      color: #111;
+      
+      svg {
+        transition: transform 0.3s ease;
+      }
+      
+      &:hover svg {
+        transform: scale(1.2);
+      }
+    }
+
+    h3 {
+      font-size: 26px;
+      font-weight: normal;
+      margin-bottom: 40px;
+      font-family: 'Georgia', serif; // Шрифт із засічками
+    }
+
+    .request-form {
+      display: flex;
+      flex-direction: column;
+      gap: 30px; // Відстань між полями
+
+      input {
+        width: 100%;
+        border: none;
+        border-bottom: 1.5px solid #111; // Лише нижня лінія
+        padding: 10px 0;
+        font-size: 16px;
+        outline: none;
+        background: transparent;
+
+        &::placeholder {
+          color: #777;
+        }
+        
+        &:focus {
+          border-bottom: 1.5px solid #d47a43; // Виділення помаранчевим при кліку
+        }
+      }
+
+      .btn-submit {
+        margin-top: 20px;
+        background-color: #d47a43; // Помаранчевий колір кнопки
+        color: #fff;
+        border: none;
+        padding: 15px 40px;
+        font-size: 18px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        align-self: center; // Центруємо кнопку
+
+        &:hover {
+          // background-color: darken(#d47a43, 10%);обмеження використання darken() у нових версіях Sass
+
+          background-color: color.adjust(#d47a43, $lightness: -10%);
+
+          // background-color: #b86532;   //
+        }
+      }
+    }
+  }
+}
+   // ==========================================
