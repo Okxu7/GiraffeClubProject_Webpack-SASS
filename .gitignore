@@ -1,0 +1,13 @@
+# Залежності Node.js (найважливіший пункт)
+node_modules/
+
+# Логи та помилки
+*.log
+npm-debug.log*
+
+# Папка готової збірки Webpack (генерується автоматично)
+dist/
+
+# Системні файли (macOS та Windows)
+.DS_Store
+Thumbs.db
