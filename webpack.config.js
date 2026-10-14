@@ -1,12 +1,13 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin'); // Плагін для копіювання фото
 
 module.exports = {
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
-    clean: true,
+    clean: true, // Очищує папку dist перед кожним запуском
   },
   module: {
     rules: [
@@ -23,6 +24,12 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html',
+    }),
+    // Правило для автоматичного перенесення фотографій
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: 'src/images', to: 'images', noErrorOnMissing: true }
+      ],
     }),
   ],
   devServer: {
